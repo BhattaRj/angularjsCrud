@@ -1,0 +1,49 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak flex="40">
+<md-toolbar>
+<div class="md-toolbar-tools">
+    <h4>Add Course</h4>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()">
+    <md-icon  aria-label="Close dialog">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </md-icon>
+    </md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<div layout="column" ng-cloak>
+    <md-content layout-padding>
+    <form name="courseForm">
+        <md-input-container class="md-block">
+        <label>Course / Grade Name </label>
+        <input md-maxlength="200" required name="name" ng-model="course.name">
+        <div ng-messages="courseForm.name.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+        <label>Section Name </label>
+        <input name="clientName" ng-model="course.section_name">
+        <div ng-messages="courseForm.code.$error" role="alert">
+            <div ng-message="md-maxlength">The name has to be less than 10 characters long.</div>
+        </div>
+
+        </md-input-container>
+        <md-input-container class="md-block">
+        <label>Code</label>
+        <input required  name="code" ng-model="project.code"  md-maxlength="10" />
+        <div ng-messages="courseForm.code.$error" role="alert">
+            <div ng-message="md-maxlength">The Code has to be less than 10 characters long.</div>
+        </div>
+        </md-input-container>
+    </form>
+    </md-content>
+</div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+<span flex></span>
+<md-button class="md-raised md-primary" ng-click="answer('not useful')">Save</md-button>
+<md-button class="md-raised md-warn" ng-click="answer('useful')" style="margin-right:20px;">Cancel</md-button>
+</md-dialog-actions>
+</md-dialog>
