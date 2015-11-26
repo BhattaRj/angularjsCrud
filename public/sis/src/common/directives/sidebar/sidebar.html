@@ -1,0 +1,36 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav in" id="side-menu">
+            <sidebar-search></sidebar-search>
+            <li ng-class="{active: collapseVar==1}">{{dropDown}}
+                <a href="" ng-click="check(1)"><i class="fa fa-wrench fa-fw"></i> Settings<span
+                class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" collapse="collapseVar!=1">
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.courses">Courses / Grades</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.buttons">Batch</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.subject">Subject</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.category">Student Category</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="main.setting">General Setting</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="main.table"><i class="fa fa-table fa-fw"></i> Tables</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="main.form"><i class="fa fa-edit fa-fw"></i> Forms</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
