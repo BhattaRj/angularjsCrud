@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="sis/bower_components/angular-loading-bar/build/loading-bar.min.css">
     <link rel="stylesheet" href="sis/bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
     {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"> --}}
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc5/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="sis/bower_components/angular-material/angular-material.css">
 
     <!-- endbuild -->
 
@@ -47,7 +46,7 @@
     <script type="text/javascript" src="sis/bower_components/angular-aria/angular-aria.min.js"></script>
 
     <script type="text/javascript" src="sis/bower_components/angular-messages/angular-messages.min.js"></script>
-    <script type="text/javascript" src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc5/angular-material.js"></script>
+    <script type="text/javascript" src="sis/bower_components/angular-material/angular-material.js"></script>
 
 
 {{--     // <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script> --}}
@@ -64,9 +63,10 @@
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar-search/sidebar-search.js"></script>
 
     <script type="text/javascript" src="sis/src/app/settings/settings.js"></script>
-    <script type="text/javascript" src="sis/src/app/settings/courses/settings-courses-list.js"></script>
+    <script type="text/javascript" src="sis/src/app/settings/courses/settings-courses.js"></script>
     <script type="text/javascript" src="sis/src/common/resources/courses.js"></script>
     <script type="text/javascript" src="sis/src/common/services/modalService.js"></script>
+    <script type="text/javascript" src="sis/src/common/services/notifyService.js"></script>
 
     <!-- endbuild -->
 
