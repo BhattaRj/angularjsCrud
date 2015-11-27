@@ -1,18 +1,18 @@
 'use strict';
 /**
- * @ngdoc overview
- * @name sbAdminApp
- * @description
- * # sbAdminApp
  *
  * Main module of the application.
+ * 
  */
 angular.module('app', [
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
     'settings',
-    'ngMaterial',
+    'ngMaterial',    
+    'ngResource',
+    
+
 
 ]).config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
