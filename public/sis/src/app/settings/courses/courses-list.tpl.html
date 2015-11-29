@@ -29,9 +29,9 @@
                                 <td>{{course.code}}</td>
                                 <td>{{course.section_name}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="edit(course.id)"></span> Edit</button>
+                                    <button type="button" ng-click="edit($event,course.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
 
-                                    <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ng-click="remove(course.id)"></span> Delete</button>                                
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="remove(course.id,$index,$event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</button>                                
 
                                 </td>
                             </tr>

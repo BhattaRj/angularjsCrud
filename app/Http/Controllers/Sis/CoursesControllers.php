@@ -45,9 +45,9 @@ class CoursesControllers extends Controller
      */
     public function show($id)
     {
-
-        //
-
+        $result['data']    = $this->course->findById($id);
+        $result['success'] = true;
+        return $result;
     }
 
     /**
@@ -72,8 +72,7 @@ class CoursesControllers extends Controller
      */
     public function destroy($id)
     {
-
-        //
-
+        $this->course->remove($id) ? $result['success'] = true : $result['success'] = false;
+        return $result;
     }
 }

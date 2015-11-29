@@ -1,14 +1,13 @@
 /**
- *  Resourse for flat creates read update delte request for flat.
+ *  Resourse for creates read update delete.
  */
-angular.module('resources.course', ['ngResource','services.notify']);
+angular.module('resources.course', ['ngResource', 'ngMaterial', 'rjServices']);
 
 angular.module('resources.course').factory('Course', Course);
 angular.module('resources.course').factory('CourseFactory', CourseFactory);
 
 
 function Course($resource) {
-
     return $resource('/course/:id', {
         id: '@id'
     }, {
@@ -27,14 +26,31 @@ function Course($resource) {
 }
 
 
-function CourseFactory(Course, $q, $mdToast,NotifyFactory) {
+function CourseFactory(Course, $q, $mdToast, NotifyFactory) {
 
     var fac = {};
     fac.getDataList = getDataList;
+    fac.getDataItem = getDataItem;
     fac.save = save;
+    fac.remove = remove;
+
+
+    function getDataItem(id) {
+        var deferred = $q.defer();
+        Course.get({
+            id: id
+        }, function(response) {
+            if (response.success) {
+                deferred.resolve(response.data);
+            }
+        }, function(err) {
+            console.log('error occoured !!');
+        });
+        return deferred.promise;
+    }
+
 
     function getDataList() {
-        
         var deferred = $q.defer();
         Course.query({}, function(resp) {
                 deferred.resolve(resp.data);
@@ -47,7 +63,6 @@ function CourseFactory(Course, $q, $mdToast,NotifyFactory) {
 
 
     function save(data) {
-
         var deferred = $q.defer();
         Course.save({}, {
             data
@@ -64,5 +79,21 @@ function CourseFactory(Course, $q, $mdToast,NotifyFactory) {
         return deferred.promise;
     }
 
+
+    function remove(id) {
+        var deferred = $q.defer();
+        Course.remove({}, {
+            id: id
+        }, function(response) {
+            if (response.success == true) {
+                deferred.resolve(response);
+                NotifyFactory.show('Records successfully removed !!')
+
+            }
+        }, function(response) {
+            console.log('error in delete' + error);
+        });
+        return deferred.promise;
+    }
     return fac;
 }

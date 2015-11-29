@@ -61,12 +61,14 @@
     <script type="text/javascript" src="sis/src/common/directives/header/header-notification/header-notification.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar-search/sidebar-search.js"></script>
+    <script type="text/javascript" src="sis/src/common/services/rjServices.js"></script>
 
     <script type="text/javascript" src="sis/src/app/settings/settings.js"></script>
     <script type="text/javascript" src="sis/src/app/settings/courses/settings-courses.js"></script>
+
     <script type="text/javascript" src="sis/src/common/resources/courses.js"></script>
-    <script type="text/javascript" src="sis/src/common/services/modalService.js"></script>
-    <script type="text/javascript" src="sis/src/common/services/notifyService.js"></script>
+
+
 
     <!-- endbuild -->
 

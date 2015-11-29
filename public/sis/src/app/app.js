@@ -11,8 +11,6 @@ angular.module('app', [
     'settings',
     'ngMaterial',    
     'ngResource',
-    
-
 
 ]).config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -28,7 +26,7 @@ angular.module('app', [
             .state('main.courses', {
                 templateUrl: 'sis/src/app/settings/courses/courses-list.tpl.html',
                 url: '/courses',
-                controller: 'CourseListController',
+                controller: 'ListController',
             })
     }
 ]);

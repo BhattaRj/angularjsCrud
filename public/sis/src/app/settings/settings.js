@@ -1,1 +1,1 @@
-angular.module('settings',['settings-courses-list']);
+angular.module('settings',['settings-courses']);
