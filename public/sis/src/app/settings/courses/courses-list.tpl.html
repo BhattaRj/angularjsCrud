@@ -8,7 +8,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <md-button class="md-raised" ng-click="add($event)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add</md-button>
+                <md-button class="md-raised" ng-click="CreateForm($event)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add</md-button>
                 <br>
                 <br>
                 <div class="table-responsive">
@@ -29,7 +29,7 @@
                                 <td>{{course.code}}</td>
                                 <td>{{course.section_name}}</td>
                                 <td>
-                                    <button type="button" ng-click="edit($event,course.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
+                                    <button type="button" ng-click="CreateForm($event,course)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
 
                                     <button type="button" class="btn btn-danger btn-xs" ng-click="remove(course.id,$index,$event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</button>                                
 

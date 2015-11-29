@@ -13,10 +13,11 @@
 <md-dialog-content>
 <div layout="column" ng-cloak>
     <md-content layout-padding>
+
     <form name="courseForm">
         <md-input-container class="md-block">
         <label>Course / Grade Name </label>
-        <input md-maxlength="200" required name="name" ng-model="course.name">
+        <input md-maxlength="200" required name="name" ng-model="dataModel.name">
         <div ng-messages="courseForm.name.$error">
             <div ng-message="required">This is required.</div>
             <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
@@ -24,7 +25,7 @@
         </md-input-container>
         <md-input-container class="md-block">
         <label>Section Name </label>
-        <input name="clientName" ng-model="course.section_name">
+        <input name="clientName" ng-model="dataModel.section_name">
         <div ng-messages="courseForm.code.$error" role="alert">
             <div ng-message="md-maxlength">The name has to be less than 10 characters long.</div>
         </div>
@@ -32,7 +33,7 @@
         </md-input-container>
         <md-input-container class="md-block">
         <label>Code</label>
-        <input required  name="code" ng-model="course.code"  md-maxlength="10" />
+        <input required  name="code" ng-model="dataModel.code"  md-maxlength="10" />
         <div ng-messages="courseForm.code.$error" role="alert">
             <div ng-message="md-maxlength">The Code has to be less than 10 characters long.</div>
         </div>
@@ -43,7 +44,7 @@
 </md-dialog-content>
 <md-dialog-actions layout="row">
 <span flex></span>
-<md-button class="md-raised md-primary" ng-click="save(course)">Save</md-button>
+<md-button class="md-raised md-primary" ng-click="save(dataModel)">Save</md-button>
 <md-button class="md-raised md-warn" ng-click="cancel()" style="margin-right:20px;">Cancel</md-button>
 </md-dialog-actions>
 </md-dialog>

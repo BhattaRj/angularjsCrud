@@ -8,16 +8,14 @@ angular.module('settings-courses', [
 
 ]);
 
-angular.module('settings-courses').controller('AddController', AddController);
-angular.module('settings-courses').controller('EditController', EditController);
+angular.module('settings-courses').controller('SaveController', SaveController);
 angular.module('settings-courses').controller('ListController', ListController);
 
 function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFactory, ModalFactory) {
 
     $scope.getData = getData;
-    $scope.add = add;
     $scope.remove = remove;
-    $scope.edit = edit;
+    $scope.CreateForm = CreateForm;
     getData();
 
     /**
@@ -25,7 +23,6 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
      */
     function getData() {
         $scope.courses = [];
-
         CourseFactory.getDataList().then(function(data) {
             $scope.courses = data;
         });
@@ -38,44 +35,42 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
                 CourseFactory.remove(id).then(function(repsonse) {
                     $scope.courses.splice($index, 1);
                 });
-            }, function() {
-
             });
     }
 
-    function edit($event, id) {
-        $scope.course = {};
-        var templateUrl = 'sis/src/app/settings/courses/course-add.tpl.html';
-        contrl = EditController;
 
-        CourseFactory.getDataItem(id).then(function(response) {
-            $scope.course = response;
-            ModalFactory.showModal($event, contrl, templateUrl).then(function() {
-                debugger;
+    function CreateForm($event, dataModel) {
+        var templateUrl = 'sis/src/app/settings/courses/form.tpl.html',
+            contrl = SaveController,
+            data = {
+                dataModel: dataModel
+            };
+
+        if (dataModel) {
+            data.title = "Update Course";
+            ModalFactory.showModal($event, contrl, templateUrl, data).then(function() {                
             });
-        });
+
+        } else {
+            data.title = "Add Course";
+            ModalFactory.showModal($event, contrl, templateUrl, data)
+                .then(function(response) {                    
+                    $scope.getData();
+                });
+
+        }
     }
-
-    function add(ev) {
-        var templateUrl = 'sis/src/app/settings/courses/course-add.tpl.html',
-            contrl = AddController;
-
-        ModalFactory.showModal(ev, contrl, templateUrl)
-            .then(function(response) {
-                $scope.getData();
-            });
-    }
-
 }
 
 
-function AddController($scope, $mdDialog, CourseFactory, $mdToast) {
+function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {
 
     $scope.save = save;
     $scope.cancel = cancel;
+    $scope.dataModel = data.dataModel ? data.dataModel : null;
 
     function save(data) {
-        CourseFactory.save(data).then(function(response) {
+        CourseFactory.save(data).then(function(response) {            
             $mdDialog.hide(response);
         });
     }
@@ -83,11 +78,5 @@ function AddController($scope, $mdDialog, CourseFactory, $mdToast) {
     function cancel() {
         $mdDialog.cancel();
     }
-
-}
-
-
-function EditController() {
-
 
 }

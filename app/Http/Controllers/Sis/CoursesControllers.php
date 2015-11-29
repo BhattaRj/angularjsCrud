@@ -13,6 +13,7 @@ class CoursesControllers extends Controller
     {
         $this->course = $course;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +33,7 @@ class CoursesControllers extends Controller
      */
     public function store(Request $request)
     {
-        $result            = $this->course->create($request->input('data'));
+        $result['data']    = $this->course->create($request->input('data'));
         $result['success'] = true;
         return $result;
     }
@@ -60,8 +61,13 @@ class CoursesControllers extends Controller
     public function update(Request $request, $id)
     {
 
-        //
-
+        /**
+         * Validate and update the flat recored.
+         * Sync with facilites_flat povit table.
+         */
+        $result['data']    = $this->course->updateModel($request->input('data'), $id);
+        $result['success'] = true;
+        return $result;
     }
 
     /**
