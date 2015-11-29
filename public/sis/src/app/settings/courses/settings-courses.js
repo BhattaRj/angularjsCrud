@@ -7,12 +7,11 @@ angular.module('settings-courses', [
     'resources.course'
 
 ]);
-
 angular.module('settings-courses').controller('SaveController', SaveController);
 angular.module('settings-courses').controller('ListController', ListController);
 
-function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFactory, ModalFactory) {
 
+function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFactory, ModalFactory) {
     $scope.getData = getData;
     $scope.remove = remove;
     $scope.CreateForm = CreateForm;
@@ -48,13 +47,12 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
 
         if (dataModel) {
             data.title = "Update Course";
-            ModalFactory.showModal($event, contrl, templateUrl, data).then(function() {                
-            });
+            ModalFactory.showModal($event, contrl, templateUrl, data).then(function() {});
 
         } else {
             data.title = "Add Course";
             ModalFactory.showModal($event, contrl, templateUrl, data)
-                .then(function(response) {                    
+                .then(function(response) {
                     $scope.getData();
                 });
 
@@ -68,9 +66,11 @@ function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) 
     $scope.save = save;
     $scope.cancel = cancel;
     $scope.dataModel = data.dataModel ? data.dataModel : null;
+    $scope.title = data.title;
+
 
     function save(data) {
-        CourseFactory.save(data).then(function(response) {            
+        CourseFactory.save(data).then(function(response) {
             $mdDialog.hide(response);
         });
     }
