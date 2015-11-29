@@ -24,19 +24,23 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="course in courses">
-                                <td>{{$index}}</td>
+                                <td>{{($index+1)+(itemsPerPage*(currentPage-1))}}</td>
                                 <td>{{course.name}}</td>
                                 <td>{{course.code}}</td>
                                 <td>{{course.section_name}}</td>
                                 <td>
                                     <button type="button" ng-click="CreateForm($event,course)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="remove(course.id,$index,$event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</button>                                
-
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="remove(course.id,$index,$event)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</button>
                                 </td>
+                            </tr>
+                            <tr colspan="5">
                             </tr>
                         </tbody>
                     </table>
+                    <div ng-show="totalItems > itemsPerPage " >
+                        <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" ng-click="pageChanged()"></uib-pagination>
+                        <pre>Page: {{currentPage}} / {{numPages}}</pre>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>

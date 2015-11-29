@@ -25,8 +25,8 @@ function CourseFactory(Course, BaseModelFactory) {
     }
 
 
-    function getDataList() {
-        return BaseModelFactory.getDataList(Course);
+    function getDataList(param) {
+        return BaseModelFactory.getDataList(Course,param);
     }
 
 

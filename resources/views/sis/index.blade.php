@@ -35,7 +35,7 @@
     <script src="sis/bower_components/json3/lib/json3.min.js"></script>
     <script src="sis/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
     <script src="sis/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-    <script src="sis/bower_componentsk/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="sis/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="sis/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <script type="text/javascript" src="sis/bower_components/angular-animate/angular-animate.min.js"></script>

@@ -19,11 +19,54 @@ class CoursesControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $result['data'] = $this->course->all();
+        //$result['data'] = $this->course->all();
+        $query = $this->course;
+
+        if ($request->has('currentPage')) {
+            $this->current_page = $request->input('currentPage');
+        }
+
+        $skip            = ($this->current_page - 1) * $this->per_page;
+        $result['total'] = $query->get()->count();
+        $result['data']  = $query->skip($skip)->take($this->per_page)->get();
+
         return $result;
     }
+
+    // $query = $this->model->with('company', 'skills', 'jobType','viewsCount')->where('status', '1')->orderBy('created_at', 'desc');
+
+    // if ($request->has('currentPage')) {
+    //     $this->current_page = $request->input('currentPage');
+    // }
+
+    // if ($request->has('keyword')) {
+    //     $query->where('title', 'like', '%' . $request->input('keyword') . '%');
+    // }
+
+    // if ($request->has('job_skill_cat_id')) {
+    //     $query->where('job_skill_cat_id', $request->input('job_skill_cat_id'));
+    // }
+
+    // if ($request->has('level')) {
+    //     $query->where('job_type_id', $request->input('level'));
+    // }
+
+    // if ($request->has('budget')) {
+    //     $budget = json_decode($request->input('budget'));
+    //     $query->whereBetween('budget', [$budget->minBudget, $budget->maxBudget]);
+    // }
+
+    // if ($request->has('job_type_id')) {
+    //     $query->where('job_type_id', $request->input('job_type_id'));
+    // }
+
+    // $skip            = ($this->current_page - 1) * $this->per_page;
+    // $result['total'] = $query->get()->count();
+    // $result['data']  = $query->skip($skip)->take($this->per_page)->get();
+
+    // return $result;
 
     /**
      * Store a newly created resource in storage.

@@ -1,18 +1,5 @@
 /**
- * --------------------------------------
- * Material Modal box.
- * --------------------------------------
- * e.g.
- *         var templateUrl = 'sis/src/app/settings/courses/course-add.tpl.html',
- *              contrl = AddController;
- *              
- *         ModalFactory.showModal(ev, contrl, templateUrl)
- *           .then(function(response) {
- *              $scope.getData();
- *           });
- *           
- * locals data must be catched in controller with the same name in the locals.
- * 
+ * Common ServiceFactory.
  */
 angular.module('rjServices', ['ngMaterial', 'ngResource']);
 angular.module('rjServices').factory('ModalFactory', ModalFactory);
@@ -21,7 +8,23 @@ angular.module('rjServices').factory('ConfirmFactory', ConfirmFactory);
 angular.module('rjServices').factory('ResourseFactory', ResourseFactory);
 angular.module('rjServices').factory('BaseModelFactory', BaseModelFactory);
 
-
+/**
+ * ---------------------------------------------------------------------------
+ * Material Modal box.
+ * ---------------------------------------------------------------------------
+ * Creates Materials Modal box.
+ * Locals must be catched in modal controllers as dependency with name data.
+ * Example:
+ * 
+ * var templateUrl = 'sis/src/app/settings/courses/course-add.tpl.html',
+ *     contrl = AddController;
+ *              
+ * ModalFactory.showModal(ev, contrl, templateUrl)
+ *   .then(function(response) {
+ *       $scope.getData();
+ *    });
+ * 
+ */
 function ModalFactory($mdDialog, $mdMedia) {
     var fac = {};
     fac.showModal = showModal;
@@ -46,13 +49,13 @@ function ModalFactory($mdDialog, $mdMedia) {
 
 
 /**
- * --------------------------------------
+ * --------------------------------------------------------
  * Material Notification (Toast)
- * --------------------------------------
+ * --------------------------------------------------------
+ * Creates material nofitication or alert.
+ * Example:
+ * NotifyFactory.show('Data successfully updated.');
  *
- *
- *
- * 
  */
 function NotifyFactory($mdToast) {
     var fac = {};
@@ -71,6 +74,23 @@ function NotifyFactory($mdToast) {
     return fac;
 }
 
+/**
+ * ----------------------------------------
+ *  Confirmation Box
+ * -----------------------------------------
+ * Creates confirmation box with yes no button.
+ * Returns promose service.
+ * Example:
+ *
+ * ConfirmFactory.show($event, 'You really want to remove this !!')
+ *   .then(function() {
+ *        // When yes button clicked.
+ *    },function(){
+ *        // When no button clicked.
+ *    });
+ * });
+ *  
+ */
 
 function ConfirmFactory($mdDialog) {
     var fac = {};
@@ -91,6 +111,7 @@ function ConfirmFactory($mdDialog) {
 }
 
 
+// Returns method to create and return resource.
 function ResourseFactory($resource) {
     var fac = {};
     fac.makeResource = makeResource;
@@ -115,6 +136,7 @@ function ResourseFactory($resource) {
     return fac;
 }
 
+
 function BaseModelFactory($q, NotifyFactory, $mdToast) {
     var fac = {};
     fac.getDataList = getDataList;
@@ -122,10 +144,12 @@ function BaseModelFactory($q, NotifyFactory, $mdToast) {
     fac.save = save;
     fac.remove = remove;
 
-    function getDataList(rsource) {
+
+    //Get all data from modal.
+    function getDataList(rsource, param) {
         var deferred = $q.defer();
-        rsource.query({}, function(resp) {
-                deferred.resolve(resp.data);
+        rsource.query(param, function(resp) {
+                deferred.resolve(resp);
             },
             function(err) {
                 deferred.reject('err');
@@ -133,6 +157,7 @@ function BaseModelFactory($q, NotifyFactory, $mdToast) {
         return deferred.promise;
     }
 
+    // Retrive single dataItem.
     function getDataItem(resource, id) {
 
         var deferred = $q.defer();
@@ -149,6 +174,10 @@ function BaseModelFactory($q, NotifyFactory, $mdToast) {
     }
 
 
+    /**
+     * If id is available update the modal
+     * else create new modal.
+     */
     function save(resource, data) {
         var deferred = $q.defer();
 
@@ -185,6 +214,7 @@ function BaseModelFactory($q, NotifyFactory, $mdToast) {
         return deferred.promise;
     }
 
+    // Remove the item from dataList.
     function remove(resource, id) {
         var deferred = $q.defer();
         resource.remove({}, {

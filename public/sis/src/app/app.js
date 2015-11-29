@@ -9,7 +9,7 @@ angular.module('app', [
     'ui.bootstrap',
     'angular-loading-bar',
     'settings',
-    'ngMaterial',    
+    'ngMaterial',
     'ngResource',
 
 ]).config(['$stateProvider', '$urlRouterProvider',
@@ -31,6 +31,17 @@ angular.module('app', [
     }
 ]);
 
-angular.module('app').controller('MainCtrl', ['$scope', function ($scope) {
-    
+angular.module('app').controller('MainCtrl', ['$scope', function($scope) {
+
+    // Initial parameters for pagination.
+    $scope.maxSize = 5;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 10;
+
+    // Close the Matrial Modal box when pressing cancel button.
+    function cancel() {
+        $mdDialog.cancel();
+    }
+
+
 }]);

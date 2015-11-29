@@ -5,7 +5,6 @@
 angular.module('settings-courses', [
     'rjServices',
     'resources.course'
-
 ]);
 angular.module('settings-courses').controller('SaveController', SaveController);
 angular.module('settings-courses').controller('ListController', ListController);
@@ -15,18 +14,29 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
     $scope.getData = getData;
     $scope.remove = remove;
     $scope.CreateForm = CreateForm;
+    $scope.param = {};
     getData();
 
-    /**
-     * Retrive all dataList.     
-     */
-    function getData() {
+    
+    // When page changed from pagination button.
+    // Set the currentPage and reload the datalist.
+    $scope.pageChanged = function() {
+        $scope.param.currentPage = $scope.currentPage;
+        $scope.getData($scope.param);
+    };
+
+
+    
+    //Retrive all dataList.         
+    function getData(param) {
         $scope.courses = [];
-        CourseFactory.getDataList().then(function(data) {
-            $scope.courses = data;
+        CourseFactory.getDataList(param).then(function(response) {
+            $scope.courses = response.data;
+            $scope.totalItems = response.total;
         });
     }
 
+    // Remove the dataItem form the dataList.
     function remove(id, $index, $event) {
 
         ConfirmFactory.show($event, 'You really want to remove this !!')
@@ -37,7 +47,7 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
             });
     }
 
-
+    // Create form for create and Save.
     function CreateForm($event, dataModel) {
         var templateUrl = 'sis/src/app/settings/courses/form.tpl.html',
             contrl = SaveController,
@@ -47,8 +57,10 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
 
         if (dataModel) {
             data.title = "Update Course";
-            ModalFactory.showModal($event, contrl, templateUrl, data).then(function() {});
+            ModalFactory.showModal($event, contrl, templateUrl, data)
+                .then(function() {
 
+                });
         } else {
             data.title = "Add Course";
             ModalFactory.showModal($event, contrl, templateUrl, data)
@@ -58,13 +70,13 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
 
         }
     }
+    
 }
 
 
-function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {
 
+function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {    
     $scope.save = save;
-    $scope.cancel = cancel;
     $scope.dataModel = data.dataModel ? data.dataModel : null;
     $scope.title = data.title;
 
@@ -74,9 +86,4 @@ function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) 
             $mdDialog.hide(response);
         });
     }
-
-    function cancel() {
-        $mdDialog.cancel();
-    }
-
 }
