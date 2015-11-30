@@ -4,9 +4,11 @@
 
 angular.module('rjDirective', []);
 angular.module('rjDirective').directive('modalCancelButtton', modalCancelButtton);
+angular.module('rjDirective').directive('canSaveForm', canSaveForm);
 
 /**
- * Close the Material's modal box when cancel button clicked.
+ * 
+ * Use this to close the Material's modal box by clicking cancel button.
  * Example :
  * 
  * <md-button class="md-raised md-warn" ng-click="cancel()" modal-cancel-buttton style="margin-right:20px;">Cancel</md-button>
@@ -25,6 +27,34 @@ function modalCancelButtton($mdDialog) {
 }
 
 
+/**
+ * 
+ * Use this to disable save button in form.
+ * 
+ * Returns true if form is valid and dirty.
+ * 
+ * Example:
+ * 
+ * <md-button class="md-raised md-primary" ng-click="save(dataModel)" can-save-form ng-disabled="!canSave(courseForm)" >Save</md-button>
+ */
+
+function canSaveForm() {
+
+    return {
+        restrict: 'A',
+        link: function(scope, iElement, iAttrs) {
+
+            scope.canSave = function(form) {
+
+                if (form) {
+                    return form.$dirty && form.$valid;
+                }
+            };
+        }
+    };
+}
+
+
 
 /**
  * 
@@ -33,8 +63,8 @@ function modalCancelButtton($mdDialog) {
  * eg.
  * 
  * <body ng-controller="MainCtrl">
- * 		<input type="text" ng-model="color" placeholder="Enter a color" />
- *   	<hello-world/>
+ *      <input type="text" ng-model="color" placeholder="Enter a color" />
+ *      <hello-world/>
  * </body>
  * 
  */

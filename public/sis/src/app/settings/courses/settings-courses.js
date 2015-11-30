@@ -41,7 +41,8 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
         ConfirmFactory.show($event, 'You really want to remove this !!')
             .then(function() {
                 CourseFactory.remove(id).then(function(repsonse) {
-                    $scope.courses.splice($index, 1);
+                    $scope.getData($scope.param);
+                    //$scope.courses.splice($index, 1);
                 });
             });
     }
@@ -55,16 +56,16 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
             };
 
         if (dataModel) {
-            data.title = "Update Course";
+            data.mode = "edit";
             ModalFactory.showModal($event, contrl, templateUrl, data)
                 .then(function() {
 
                 });
         } else {
-            data.title = "Add Course";
+            data.mode = "add";
             ModalFactory.showModal($event, contrl, templateUrl, data)
                 .then(function(response) {
-                    $scope.getData();
+                    $scope.getData($scope.param);
                 });
 
         }
@@ -76,19 +77,12 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
 
 function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {
     $scope.save = save;
-   // $scope.cancel = cancel;
     $scope.dataModel = data.dataModel ? data.dataModel : null;
-    $scope.title = data.title;
-
+    $scope.mode = data.mode;
 
     function save(data) {
         CourseFactory.save(data).then(function(response) {
             $mdDialog.hide(response);
         });
     }
-
-    // Close the Matrial Modal box when pressing cancel button.
-    // function cancel() {
-    //     $mdDialog.cancel();
-    // }
 }
