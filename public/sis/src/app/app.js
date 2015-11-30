@@ -11,7 +11,7 @@ angular.module('app', [
     'settings',
     'ngMaterial',
     'ngResource',
-
+    'rjDirective',
 ]).config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
@@ -37,11 +37,5 @@ angular.module('app').controller('MainCtrl', ['$scope', function($scope) {
     $scope.maxSize = 5;
     $scope.currentPage = 1;
     $scope.itemsPerPage = 10;
-
-    // Close the Matrial Modal box when pressing cancel button.
-    function cancel() {
-        $mdDialog.cancel();
-    }
-
 
 }]);

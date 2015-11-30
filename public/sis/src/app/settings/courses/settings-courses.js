@@ -17,7 +17,6 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
     $scope.param = {};
     getData();
 
-    
     // When page changed from pagination button.
     // Set the currentPage and reload the datalist.
     $scope.pageChanged = function() {
@@ -26,7 +25,7 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
     };
 
 
-    
+
     //Retrive all dataList.         
     function getData(param) {
         $scope.courses = [];
@@ -70,13 +69,14 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
 
         }
     }
-    
+
 }
 
 
 
-function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {    
+function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {
     $scope.save = save;
+   // $scope.cancel = cancel;
     $scope.dataModel = data.dataModel ? data.dataModel : null;
     $scope.title = data.title;
 
@@ -86,4 +86,9 @@ function SaveController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) 
             $mdDialog.hide(response);
         });
     }
+
+    // Close the Matrial Modal box when pressing cancel button.
+    // function cancel() {
+    //     $mdDialog.cancel();
+    // }
 }

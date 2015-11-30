@@ -55,18 +55,24 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script type="text/javascript" src="sis/src/common/services/rjServices.js"></script>
+    <script type="text/javascript" src="sis/src/common/directives/rjDirective.js"></script>
+
     <script src="sis/src/app/app.js"></script>
     <script src="sis/src/js/sb-admin-2.js"></script>
+
+
     <script type="text/javascript" src="sis/src/common/directives/header/header.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/header/header-notification/header-notification.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar-search/sidebar-search.js"></script>
-    <script type="text/javascript" src="sis/src/common/services/rjServices.js"></script>
+
 
     <script type="text/javascript" src="sis/src/app/settings/settings.js"></script>
     <script type="text/javascript" src="sis/src/app/settings/courses/settings-courses.js"></script>
 
     <script type="text/javascript" src="sis/src/common/resources/courses.js"></script>
+
 
 
 
