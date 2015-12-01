@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('siss', 'Sis\HomeController@index');
 Route::resource('course', 'Sis\CoursesControllers');
+Route::resource('student-category', 'Sis\StudentCategoriesController');

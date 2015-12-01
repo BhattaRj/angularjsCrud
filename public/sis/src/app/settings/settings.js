@@ -1,1 +1,1 @@
-angular.module('settings',['settings-courses']);
+angular.module('settings',['settings-courses','settings-studentCategory']);

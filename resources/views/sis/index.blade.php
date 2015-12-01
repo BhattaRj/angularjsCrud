@@ -67,11 +67,14 @@
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar.js"></script>
     <script type="text/javascript" src="sis/src/common/directives/sidebar/sidebar-search/sidebar-search.js"></script>
 
+    <script type="text/javascript" src="sis/src/common/resources/courses.js"></script>
+    <script type="text/javascript" src="sis/src/common/resources/studentCategory.js"></script>
 
     <script type="text/javascript" src="sis/src/app/settings/settings.js"></script>
     <script type="text/javascript" src="sis/src/app/settings/courses/settings-courses.js"></script>
+    <script type="text/javascript" src="sis/src/app/settings/studentCategory/settings-studentCategory.js"></script>
 
-    <script type="text/javascript" src="sis/src/common/resources/courses.js"></script>
+
 
 
 

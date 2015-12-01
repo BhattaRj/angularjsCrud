@@ -1,19 +1,19 @@
 <?php
+
 namespace App\Http\Controllers\Sis;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sis\Course;
+use App\Models\Sis\StudentCategory;
 use Illuminate\Http\Request;
 
-class CoursesControllers extends Controller
+class StudentCategoriesController extends Controller
 {
-    protected $course;
+    private $studentCategory;
 
-    public function __construct(Course $course)
+    public function __construct(StudentCategory $studentCategory)
     {
-        $this->course = $course;
+        $this->studentCategory = $studentCategory;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +21,7 @@ class CoursesControllers extends Controller
      */
     public function index(Request $request)
     {
-        $query = $this->course;
+        $query = $this->studentCategory;
 
         if ($request->has('currentPage')) {
             $this->current_page = $request->input('currentPage');
@@ -42,7 +42,7 @@ class CoursesControllers extends Controller
      */
     public function store(Request $request)
     {
-        $result['data']    = $this->course->create($request->input('data'));
+        $result['data']    = $this->studentCategory->create($request->input('data'));
         $result['success'] = true;
         return $result;
     }
@@ -55,11 +55,10 @@ class CoursesControllers extends Controller
      */
     public function show($id)
     {
-        $result['data']    = $this->course->findById($id);
+        $result['data']    = $this->studentCategory->findById($id);
         $result['success'] = true;
         return $result;
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -69,8 +68,7 @@ class CoursesControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $result['data']    = $this->course->updateModel($request->input('data'), $id);
+        $result['data']    = $this->studentCategory->updateModel($request->input('data'), $id);
         $result['success'] = true;
         return $result;
     }
@@ -83,7 +81,7 @@ class CoursesControllers extends Controller
      */
     public function destroy($id)
     {
-        $this->course->remove($id) ? $result['success'] = true : $result['success'] = false;
+        $this->studentCategory->remove($id) ? $result['success'] = true : $result['success'] = false;
         return $result;
     }
 }

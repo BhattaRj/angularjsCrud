@@ -2,17 +2,17 @@
  * List all the courses.
  * 
  */
-angular.module('settings-courses', [
+angular.module('settings-studentCategory', [
     'rjServices',
-    'resources.course'
+    'resources.studentCategory'
 ]);
-angular.module('settings-courses').controller('SaveCourseController', SaveCourseController);
-angular.module('settings-courses').controller('CourseListController', CourseListController);
+angular.module('settings-studentCategory').controller('SaveStudentCategoryController', SaveStudentCategoryController);
+angular.module('settings-studentCategory').controller('StudentCategoryListController', StudentCategoryListController);
 
 
-function CourseListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFactory, ModalFactory) {
+function StudentCategoryListController($scope, $mdDialog, $mdMedia, StudentCategoryFactory, ConfirmFactory, ModalFactory) {
 
-    // Methods for controller.
+    // // Methods for controller.
     $scope.getData = getData;
     $scope.remove = remove;
     $scope.CreateForm = CreateForm;
@@ -35,7 +35,7 @@ function CourseListController($scope, $mdDialog, $mdMedia, CourseFactory, Confir
     //Retrive all dataList.         
     function getData(param) {
         $scope.courses = [];
-        CourseFactory.getDataList(param).then(function(response) {
+        StudentCategoryFactory.getDataList(param).then(function(response) {
             $scope.courses = response.data;
             $scope.totalItems = response.total;
             $scope.dataLoaded = true;
@@ -47,7 +47,7 @@ function CourseListController($scope, $mdDialog, $mdMedia, CourseFactory, Confir
 
         ConfirmFactory.show($event, 'You really want to remove this !!')
             .then(function() {
-                CourseFactory.remove(id).then(function(repsonse) {
+                StudentCategoryFactory.remove(id).then(function(repsonse) {
                     $scope.getData($scope.param);
                     //$scope.courses.splice($index, 1);
                 });
@@ -56,8 +56,9 @@ function CourseListController($scope, $mdDialog, $mdMedia, CourseFactory, Confir
 
     // Create form for create and Save.
     function CreateForm($event, dataModel) {
-        var templateUrl = 'sis/src/app/settings/courses/form.tpl.html',
-            contrl = SaveCourseController,
+        debugger;
+        var templateUrl = 'sis/src/app/settings/studentCategory/form.tpl.html',
+            contrl = SaveStudentCategoryController,
             data = {
                 dataModel: dataModel
             };
@@ -82,13 +83,13 @@ function CourseListController($scope, $mdDialog, $mdMedia, CourseFactory, Confir
 
 
 
-function SaveCourseController(data, $scope, $mdDialog, CourseFactory, $mdToast, data) {
+function SaveStudentCategoryController(data, $scope, $mdDialog, StudentCategoryFactory, $mdToast, data) {
     $scope.save = save;
     $scope.dataModel = data.dataModel ? data.dataModel : null;
     $scope.mode = data.mode;
 
     function save(data) {
-        CourseFactory.save(data).then(function(response) {
+        StudentCategoryFactory.save(data).then(function(response) {
             $mdDialog.hide(response);
         });
     }

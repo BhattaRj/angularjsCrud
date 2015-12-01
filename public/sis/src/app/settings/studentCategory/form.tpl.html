@@ -1,0 +1,48 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak flex="40">
+<md-toolbar>
+<div class="md-toolbar-tools">
+
+    <h4 ng-show="mode=='add'">Add Student Category</h4>
+    <h4 ng-show="mode=='edit'">Edit Student Category</h4>
+
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()">
+    <md-icon  aria-label="Close dialog">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </md-icon>
+    </md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<div layout="column" ng-cloak>
+    <md-content layout-padding>
+    <form name="Form">
+        <md-input-container class="md-block">
+        <label>Course / Grade Name </label>
+        <input md-maxlength="200" required name="name" ng-model="dataModel.name">
+        <div ng-messages="Form.name.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea name="clientName" ng-model="dataModel.description">
+            
+        </textarea>        
+
+        <div ng-messages="Form.code.$error" role="alert">
+            <div ng-message="md-maxlength">The name has to be less than 10 characters long.</div>
+        </div>
+        </md-input-container>
+
+    </form>
+    </md-content>
+</div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+<span flex></span>
+<md-button class="md-raised md-primary" ng-click="save(dataModel)" can-save-form ng-disabled="!canSave(Form)" >Save</md-button>
+<md-button class="md-raised md-warn" ng-click="cancel()" modal-cancel-buttton style="margin-right:20px;">Cancel</md-button>
+</md-dialog-actions>
+</md-dialog>

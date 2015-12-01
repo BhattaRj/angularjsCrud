@@ -26,8 +26,13 @@ angular.module('app', [
             .state('main.courses', {
                 templateUrl: 'sis/src/app/settings/courses/courses-list.tpl.html',
                 url: '/courses',
-                controller: 'ListController',
+                controller: 'CourseListController',
             })
+            .state('main.studnet-category', {
+                templateUrl: 'sis/src/app/settings/studentCategory/studentCategory-list.tpl.html',
+                url: '/student-category',
+                controller: 'StudentCategoryListController',
+            })            
     }
 ]);
 
