@@ -11,11 +11,17 @@ angular.module('settings-courses').controller('ListController', ListController);
 
 
 function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFactory, ModalFactory) {
+
+    // Methods for controller.
     $scope.getData = getData;
     $scope.remove = remove;
     $scope.CreateForm = CreateForm;
+
+    // Variables for scope.
+    $scope.dataLoaded = false;
     $scope.param = {};
     getData();
+    
 
     // When page changed from pagination button.
     // Set the currentPage and reload the datalist.
@@ -32,6 +38,7 @@ function ListController($scope, $mdDialog, $mdMedia, CourseFactory, ConfirmFacto
         CourseFactory.getDataList(param).then(function(response) {
             $scope.courses = response.data;
             $scope.totalItems = response.total;
+            $scope.dataLoaded = true;
         });
     }
 
