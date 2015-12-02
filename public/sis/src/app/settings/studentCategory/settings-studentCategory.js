@@ -16,12 +16,14 @@ function StudentCategoryListController($scope, $mdDialog, $mdMedia, StudentCateg
     $scope.getData = getData;
     $scope.remove = remove;
     $scope.CreateForm = CreateForm;
+    $scope.changeStatus = changeStatus;
 
     // Variables for scope.
     $scope.dataLoaded = false;
     $scope.param = {};
     getData();
-    
+
+
 
     // When page changed from pagination button.
     // Set the currentPage and reload the datalist.
@@ -55,8 +57,7 @@ function StudentCategoryListController($scope, $mdDialog, $mdMedia, StudentCateg
     }
 
     // Create form for create and Save.
-    function CreateForm($event, dataModel) {
-        debugger;
+    function CreateForm($event, dataModel) {        
         var templateUrl = 'sis/src/app/settings/studentCategory/form.tpl.html',
             contrl = SaveStudentCategoryController,
             data = {
@@ -77,6 +78,11 @@ function StudentCategoryListController($scope, $mdDialog, $mdMedia, StudentCateg
                 });
 
         }
+    }
+
+    // Change the status.
+    function changeStatus(data) {        
+        StudentCategoryFactory.save(data);
     }
 
 }

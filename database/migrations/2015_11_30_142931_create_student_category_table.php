@@ -17,7 +17,7 @@ class CreateStudentCategoryTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('description');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
         });
     }
 

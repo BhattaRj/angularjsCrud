@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('code');
             $table->string('section_name');
             $table->integer('grading_type');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
         });
     }
 

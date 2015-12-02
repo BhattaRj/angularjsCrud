@@ -127,3 +127,11 @@ body {
 .inputdemoErrors .inputErrorsApp {
     min-height: 48px;
 }
+
+/**
+ * material switch 
+ */
+.switchdemoBasicUsage .inset {
+    padding-left: 25px;
+    padding-top: 25px;
+}
